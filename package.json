@@ -1,0 +1,32 @@
+{
+  "name": "Tweets",
+  "version": "0.0.1",
+  "description": "A simple tweets cruds app with node express mysql",
+  "main": "server.js",
+  "scripts": {
+    "start": "node start server.js",
+    "stop": "node stop server.js",
+    "restart": "node restart server.js",
+    "watch": "nodemon server.js --exec \"./node_modules/.bin/eslint **/*.js .\""
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "config": "^1.29.2",
+    "express": "^4.16.2",
+    "lodash": "^4.17.4",
+    "method-override": "^2.3.10",
+    "morgan": "^1.9.0",
+    "mysql2": "^1.5.1",
+    "sequelize": "^4.32.1",
+    "winston": "^2.4.0"
+  },
+  "repository": "https://github.com/shubhampatwa/tweets.git",
+  "author": "Shubham Patwa",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-google": "^0.9.1",
+    "nodemon": "^1.17.3"
+  }
+}
