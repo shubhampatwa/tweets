@@ -89,6 +89,27 @@ class TweetController {
 
       Responder.created(res, {message: `Tweet with uid \`${uid}\` updated successfully!`});
     } catch (error) {
+      Responder.operationFailed(res, error); 
+    }
+  }
+
+  static async deleteTweetByUid(req, res) {
+    try {
+      const { uid } = req.params;
+      if (!uid) {
+        throw new BadRequestError(`Missing property uid`);
+      }
+      
+      const tweet = await Tweet.findById(uid);
+      
+      if (!tweet) {
+        throw new BadRequestError(`No Tweet exist with uid \`${uid}\``);
+      }
+        
+      await tweet.destroy({truncate: true});
+      
+      Responder.success(res, {message: `Tweet with uid \`${uid}\` deleted successfully!`});
+    } catch (error) {
       Responder.operationFailed(res, error);      
     }
   }

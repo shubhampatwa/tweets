@@ -12,6 +12,8 @@ const initTweetRoutes = () => {
 
   TweetRouter.put("/:uid", TweetController.updateTweetByUid);
 
+  TweetRouter.delete("/:uid", TweetController.deleteTweetByUid);
+
   return TweetRouter;
 }
 
