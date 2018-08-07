@@ -6,6 +6,8 @@ const initTweetRoutes = () => {
 
   TweetRouter.post("/", TweetController.addTweet);
 
+  TweetRouter.get("/", TweetController.getTweets);
+
   return TweetRouter;
 }
 
