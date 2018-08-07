@@ -67,6 +67,31 @@ class TweetController {
       Responder.operationFailed(res, error);      
     }
   }
+
+  static async updateTweetByUid(req, res) {
+    try {
+      const [uid, content] = [req.params.uid, req.body.content];
+      if (!uid) {
+        throw new BadRequestError('Missing property `uid`');
+      }
+      console.log(uid, ">>>")
+      const tweet = await Tweet.findById(uid);
+
+      if (!tweet) {
+        throw new BadRequestError(`No Tweet exist with uid \`${uid}\``);
+      }
+
+      if (!content) {
+        throw new BadRequestError('Missing property `content`');
+      }
+
+      await tweet.update({content});
+
+      Responder.created(res, {message: `Tweet with uid \`${uid}\` updated successfully!`});
+    } catch (error) {
+      Responder.operationFailed(res, error);      
+    }
+  }
 }
 
 module.exports = TweetController;

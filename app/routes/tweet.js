@@ -10,6 +10,8 @@ const initTweetRoutes = () => {
 
   TweetRouter.get("/:uid", TweetController.getTweetByUid);
 
+  TweetRouter.put("/:uid", TweetController.updateTweetByUid);
+
   return TweetRouter;
 }
 
