@@ -48,6 +48,25 @@ class TweetController {
       Responder.operationFailed(res, error);
     }
   }
+
+  static async getTweetByUid(req, res) {
+    try {
+      const { uid } = req.params;
+      if (!uid) {
+        throw new BadRequestError(`Missing property uid`);
+      }
+
+      const tweet = await Tweet.findById(uid);
+
+      if (!tweet) {
+        throw new BadRequestError(`No Tweet exist with uid \`${uid}\``);
+      }
+      
+      Responder.success(res, tweet);
+    } catch (error) {
+      Responder.operationFailed(res, error);      
+    }
+  }
 }
 
 module.exports = TweetController;
