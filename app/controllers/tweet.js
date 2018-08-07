@@ -24,12 +24,12 @@ class TweetController {
 
   static async getTweets(req, res) {
     try {
-      const required = ['count', 'order'];
+      const required = ['count', 'order', 'page'];
       const missingprop = _.find(required, prop => !_.has(req.query, prop))
       if(missingprop) {
         throw new BadRequestError(`Missing property \`${missingprop}\``);
       }
-      const { count, order } = req.query;
+      const { count, order, page } = req.query;
       if (isNaN(count)) {
         throw new BadRequestError('Invalid count params passed!');
       }
@@ -38,7 +38,14 @@ class TweetController {
         throw new BadRequestError('Invalid order params passed!');
       }
 
+      if (isNaN(page) && parseInt(page) <= 0) {
+        throw new BadRequestError('Invalid page params passed!');
+      }
+
+      const offset = parseInt(count) * (parseInt(page) - 1);
+
       const tweets = await Tweet.findAll({
+        offset,
         limit: parseInt(count),
         order: [['created_at', order]]
       });
