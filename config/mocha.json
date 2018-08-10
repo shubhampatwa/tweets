@@ -1,0 +1,23 @@
+{
+  "app": "Tweets App",
+  "loglevel": "debug",
+  "sequelize": {
+    "name": "test_tweets",
+    "user": "root",
+    "pass": "root",
+    "settings": {
+      "host": "localhost",
+      "port": 3306,
+      "dialect": "mysql",
+      "operatorsAliases": false,
+      "pool": {
+        "max": 40,
+        "min": 0,
+        "idle": 10000
+      },
+      "define": {
+        "underscored": true
+      }
+    }
+  }
+}
